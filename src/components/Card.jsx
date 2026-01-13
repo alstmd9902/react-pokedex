@@ -1,7 +1,10 @@
+import { memo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FavoriteButton from "./FavoriteButton";
+import Loading from "./Loading";
 
-export default function Card({ pokemon }) {
+export const Card = memo(function Card({ pokemon }) {
+  const [isImageLoading, setIsImageLoading] = useState(true);
   const navigate = useNavigate();
   return (
     <section
@@ -12,8 +15,15 @@ export default function Card({ pokemon }) {
       className="flex-1 flex flex-col items-center border border-blue-200 p-4 rounded-xl section card"
     >
       <FavoriteButton pokemonId={pokemon.id} />
-      <img src={pokemon.front} alt={pokemon.name} className="w-[120px]" />
+      <Loading className={isImageLoading ? "block" : "hidden"} />
+      <img
+        onLoad={() => setIsImageLoading(false)}
+        src={pokemon.front}
+        alt={pokemon.name}
+        className="w-[120px]"
+      />
+
       <div>{pokemon.name}</div>
     </section>
   );
-}
+});

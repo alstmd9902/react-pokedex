@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectPokemonById } from "../RTK/selector";
-import FavoriteButton from "../components/FavoriteButton";
+import FlipCard from "../components/FlibCard";
 
 export default function Detail() {
   const { pokemonId } = useParams();
@@ -11,10 +11,7 @@ export default function Detail() {
   console.log(pokemon, "======>");
   return (
     <div className="max-w-[450px] mx-auto flex flex-col gap-3 justify-center items-center border border-blue-200 px-4 py-12 rounded-xl card">
-      <FavoriteButton pokemonId={Number(pokemonId)} className="text-3xl" />
-      <div className="text-3xl">{pokemon.name}</div>
-      <div className="text-2xl">{pokemon.description}</div>
-      <img className="w-[200px]" src={pokemon.front} />
+      <FlipCard pokemon={pokemon} />
     </div>
   );
 }

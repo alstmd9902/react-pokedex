@@ -12,11 +12,6 @@ export const fetchMultiplePokemonById = createAsyncThunk(
         `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
       );
       const data = await response.json();
-      // console.log(data.names.find((el) => el.language.name === "ko").name);
-      // console.log(
-      //   data.flavor_text_entries.find((el) => el.language.name === "ko")
-      //     .flavor_text
-      // );
 
       const pokemonData = {
         id: pokemonId,
